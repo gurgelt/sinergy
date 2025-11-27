@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesouraria & Fluxo de Caixa</title>
+    
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/notifications.css">
+    <link rel="stylesheet" href="../styles/nav.css">
+    <link rel="stylesheet" href="../styles/tesouraria.css">
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+    <div id="loader-overlay">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <header class="cabecalho">
+        <div class="logo-container">
+            <a href="../index.html" id="logo-link" class="logo-link"> 
+                <img src="../images/sinergy_logo.png" alt="Sinergy Logo" class="sidebar-logo">
+            </a>
+            <button id="sidebar-toggle" class="btn-toggle-menu" title="Recolher/Expandir Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <nav class="style-nav">
+            <div class="div-nav">
+                <ul class="ul-nav">
+                    <li class="items-nav"><a href="../index.html"><span>Home</span></a></li>
+                    
+                    <li class="items-nav" data-module="diretoria"> 
+                        <a href="diretoria.html"> <span>Diretoria</span>
+                        </a> 
+                    </li>
+                    
+                    <li class="items-nav has-submenu">
+                        <a href="#" class="production-link"><span>Suprimentos<i class="fas fa-chevron-down submenu-arrow"></i></span></a>
+                        <ul class="submenu">
+                            <li><a href="suprimentos.html">Gestão de Compras</a></li>
+                            <li><a href="compras.html">Solicitações de Compra</a></li>
+                        </ul>
+                    </li>
+                    <li class="items-nav has-submenu">
+                        <a href="#" class="production-link"><span>Estoque <i class="fas fa-chevron-down submenu-arrow"></i></span></a>
+                        <ul class="submenu">
+                            <li><a href="estoque.html">Estoque</a></li>
+                            <li><a href="saldo.html">Saldo do Estoque</a></li>
+                        </ul>
+                    </li>
+                    <li class="items-nav has-submenu">
+                        <a href="#" class="production-link"><span>Comercial <i class="fas fa-chevron-down submenu-arrow"></i></span></a>
+                        <ul class="submenu">
+                            <li><a href="orcamentos.html">Orçamentos</a></li>
+                            <li><a href="pedidos.html">Pedidos</a></li>
+                            <li><a href="produtos_catalogo.html">Catálogo de Produtos</a></li>
+                        </ul>
+                    </li>
+                    <li class="items-nav has-submenu active">
+                        <a href="#" class="production-link"><span>Financeiro <i class="fas fa-chevron-down submenu-arrow"></i></span></a>
+                        <ul class="submenu" style="display: block;">
+                            <li><a href="financeiro.html">Geral</a></li>
+                            <li><a href="contasapagar.html">Contas a pagar</a></li>
+                            <li><a href="contasareceber.html">Contas a receber</a></li>
+                            <li><a href="tesouraria.html" class="active">Tesouraria</a></li> </ul>
+                    </li>
+                    
+                    <li class="items-nav has-submenu">
+                        <a href="#" class="production-link"><span>Comex <i class="fas fa-chevron-down submenu-arrow"></i></span></a>
+                        <ul class="submenu">
+                            <li><a href="informacoes.html">Informações</a></li>
+                            <li><a href="documentos.html">Documentos</a></li>
+                            <li><a href="rastreio.html">Rastreio</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="items-nav has-submenu"><a href="#" class="production-link"><span>RH <i class="fas fa-chevron-down submenu-arrow"></i></span></a><ul class="submenu"><li><a href="funcionarios.html">Funcionários</a></li></ul></li>
+                    <li class="items-nav"><a href="manutencoes.html"><span>Manutenções</span></a></li>
+                    <li class="items-nav"><a href="produtos.html"><span>Produções</span></a></li>
+                    <li class="items-nav"><a href="movimentacoes.html"><span>Movimentações</span></a></li>
+                    <li class="items-nav"><a href="consulta.html"><span>Consulta</span></a></li>                         
+                    <li class="items-nav"><a href="relatorios.html"><span>Relatórios</span></a></li>
+                    <li class="items-nav"><a href="suporte.html"><span>Suporte</span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="top-bar">
+        <div class="section-title">Tesouraria</div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Buscar solicitação...">
+        </div>
+        
+        <div id="notification-bell-icon" class="notification-icon">
+            <i class="fas fa-bell"></i>
+            <div id="notification-dropdown" class="notification-dropdown">
+                <div class="notification-dropdown-header">
+                    Notificações <span id="notification-count">(0)</span>
+                </div>
+                <div id="notification-dropdown-list">
+                    <div class="notification-empty-state">
+                        Nenhuma notificação no momento.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="user-profile" id="user-profile-container">
+            <div class="avatar">
+                <img src="https://i.pravatar.cc/100" alt="Avatar do usuário" id="user-avatar">
+            </div>
+            <div class="user-info">
+                <div class="user-name" id="user-name">Carregando...</div>
+                <div class="user-email" id="user-email">Carregando...</div>
+            </div>
+            <i class="fas fa-chevron-down dropdown-arrow"></i>
+
+            <div class="dropdown-menu" id="user-dropdown-menu">
+                <a href="meus-dados.html" id="meus-dados-btn" class="dropdown-item">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Meus Dados</span>
+                </a>
+                <a href="#" id="logout-btn" class="dropdown-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <main class="conteudo-principal">
+        <div class="tesouraria-header">
+            <div class="header-left">
+                <h2>Extrato Financeiro Unificado</h2>
+                <p style="color: #64748b; font-size: 14px; margin-top: 5px;">Movimentações liquidadas (Entradas e Saídas efetivadas)</p>
+            </div>
+            <div class="header-actions">
+                <button id="btn-exportar-extrato" class="btn btn-success">
+                    <i class="fas fa-file-excel"></i> Exportar Extrato
+                </button>
+            </div>
+        </div>
+
+        <div class="tesouraria-stats">
+            <div class="stat-card entrada">
+                <div class="stat-icon"><i class="fas fa-arrow-up"></i></div>
+                <div class="stat-info">
+                    <div class="stat-label">Entradas (Período)</div>
+                    <div class="stat-value text-success" id="kpi-entradas">R$ 0,00</div>
+                </div>
+            </div>
+            <div class="stat-card saida">
+                <div class="stat-icon"><i class="fas fa-arrow-down"></i></div>
+                <div class="stat-info">
+                    <div class="stat-label">Saídas (Período)</div>
+                    <div class="stat-value text-danger" id="kpi-saidas">R$ 0,00</div>
+                </div>
+            </div>
+            <div class="stat-card saldo">
+                <div class="stat-icon"><i class="fas fa-wallet"></i></div>
+                <div class="stat-info">
+                    <div class="stat-label">Saldo do Período</div>
+                    <div class="stat-value" id="kpi-saldo">R$ 0,00</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filters-container">
+            <div class="filter-group">
+                <label>Período</label>
+                <select id="filter-periodo" class="filter-select">
+                    <option value="hoje">Hoje</option>
+                    <option value="7">Últimos 7 dias</option>
+                    <option value="30" selected>Últimos 30 dias</option>
+                    <option value="90">Últimos 90 dias</option>
+                    <option value="todos">Todo o histórico</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Tipo de Movimento</label>
+                <select id="filter-tipo" class="filter-select">
+                    <option value="todos">Entradas e Saídas</option>
+                    <option value="entrada">Apenas Entradas</option>
+                    <option value="saida">Apenas Saídas</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table" id="tabela-tesouraria">
+                <thead>
+                    <tr>
+                        <th>Data Pagto/Receb.</th>
+                        <th>Tipo</th>
+                        <th>Descrição / Cliente</th>
+                        <th>Categoria</th>
+                        <th class="text-right">Valor</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tesouraria-tbody">
+                    <tr><td colspan="6" class="text-center">Carregando movimentações...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <div id="modal-reversao" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h2 style="color: #d97706;"><i class="fas fa-undo-alt"></i> Reverter Movimentação</h2>
+                <button class="close-modal" id="close-reversao">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 15px;">
+                    Você está prestes a estornar esta movimentação. O status voltará para <strong>Pendente/Aguardando</strong>.
+                </p>
+                
+                <div class="info-box" style="margin-bottom: 20px;">
+                    <p><strong>Item:</strong> <span id="reversao-descricao">...</span></p>
+                    <p><strong>Valor:</strong> <span id="reversao-valor">...</span></p>
+                </div>
+
+                <form id="form-reversao">
+                    <input type="hidden" id="reversao-id">
+                    <input type="hidden" id="reversao-tipo"> <div class="form-group">
+                        <label>Motivo da Reversão *</label>
+                        <textarea id="reversao-motivo" class="form-control" rows="3" required placeholder="Ex: Pagamento lançado duplicado; Erro de digitação; Cheque devolvido..."></textarea>
+                        <small style="color: #64748b;">O motivo será registrado no histórico do lançamento.</small>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="btn-cancelar-reversao">Cancelar</button>
+                        <button type="submit" class="btn btn-warning" id="btn-confirmar-reversao">
+                            Confirmar Estorno
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div id="modal-editar-tesouraria" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h2 id="titulo-editar-tesouraria">Editar Lançamento</h2>
+                <button class="close-modal" id="close-editar-tesouraria">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-editar-tesouraria">
+                    <input type="hidden" id="edit-id">
+                    <input type="hidden" id="edit-tipo"> <div class="form-group">
+                        <label>Descrição / Cliente *</label>
+                        <input type="text" id="edit-descricao" class="form-control" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Categoria</label>
+                            <input type="text" id="edit-categoria" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Valor (R$) *</label>
+                            <input type="number" id="edit-valor" class="form-control" step="0.01" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Data do Pagamento/Recebimento *</label>
+                        <input type="date" id="edit-data" class="form-control" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="btn-cancelar-editar">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Salvar Alterações
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification-container"></div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/tesouraria.js"></script> </body>
+</html>

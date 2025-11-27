@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produção</title>
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/produtos.css">
+    <link rel="stylesheet" href="../styles/notifications.css">
+    <link rel="stylesheet" href="../styles/nav.css">
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+    <div id="loader-overlay">
+        <div class="loader-spinner"></div>
+    </div>
+
+<header class="cabecalho">
+        <div class="logo-container">
+            <a href="../index.html" id="logo-link" class="logo-link"> 
+                <img src="../images/sinergy_logo.png" alt="Sinergy Logo" class="sidebar-logo">
+            </a>
+            
+            <button id="sidebar-toggle" class="btn-toggle-menu" title="Recolher/Expandir Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="style-nav">
+            <div class="div-nav">
+                <ul class="ul-nav">
+                    <li class="items-nav"><a href="../index.html"><span>Home</span></a></li>
+                    
+                    <li class="items-nav" data-module="diretoria"> 
+                        <a href="diretoria.html"> <span>Diretoria</span>
+                        </a> 
+                    </li>
+                    
+                    <li class="items-nav has-submenu">
+                        <a href="#" class="production-link"><span>Suprimentos<i class="fas fa-chevron-down submenu-arrow"></i></span></a>
+                        <ul class="submenu">
+                            <li><a href="suprimentos.html">Gestão de Compras</a></li>
+                            <li><a href="compras.html">Solicitações de Compra</a></li>
+                        </ul>
+                    </li>
+                
+                    <li class="items-nav has-submenu" data-module="estoque">
+                        <a href="#" class="production-link"><span>Estoque <i class="fas fa-chevron-down submenu-arrow"></i></span></a>
+                        <ul class="submenu">
+                            <li><a href="estoque.html">Estoque</a></li>
+                            <li><a href="saldo.html">Saldo do Estoque</a></li>
+                        </ul>
+                    </li>
+                
+                    <li class="items-nav has-submenu" data-module="comercial">
+                        <a href="#" class="production-link"><span>Comercial <i class="fas fa-chevron-down submenu-arrow"></i></span></a>
+                        <ul class="submenu">
+                            <li><a href="orcamentos.html">Orçamentos</a></li>
+                            <li><a href="pedidos.html">Pedidos</a></li>
+                            <li><a href="produtos_catalogo.html">Catálogo de Produtos</a></li>
+                        </ul>
+                    </li>
+                
+                    <li class="items-nav has-submenu" data-module="financeiro">
+                        <a href="#" class="production-link"><span>Financeiro <i class="fas fa-chevron-down submenu-arrow"></i></span></a>
+                        <ul class="submenu">
+                            <li><a href="financeiro.html">Geral</a></li>
+                            <li><a href="contasapagar.html">Contas a pagar</a></li>
+                            <li><a href="contasareceber.html">Contas a receber</a></li>
+                            <li><a href="tesouraria.html">Tesouraria</a></li>
+                        </ul>
+                    </li>
+                
+                    <li class="items-nav has-submenu" data-module="comex">
+                        <a href="#" class="production-link"><span>Comex <i class="fas fa-chevron-down submenu-arrow"></i></span></a>
+                        <ul class="submenu">
+                            <li><a href="informacoes.html">Informações</a></li>
+                            <li><a href="documentos.html">Documentos</a></li>
+                            <li><a href="rastreio.html">Rastreio</a></li>
+                        </ul>
+                    </li>
+                
+                    <li class="items-nav has-submenu" data-module="rh">
+                        <a href="#" class="production-link"><span>RH <i class="fas fa-chevron-down submenu-arrow"></i></span></a>
+                        <ul class="submenu">
+                            <li><a href="funcionarios.html">Funcionários</a></li>
+                        </ul>
+                    </li>
+                
+                    <li class="items-nav" data-module="manutencao"><a href="manutencoes.html"><span>Manutenções</span></a></li>
+                    <li class="items-nav" data-module="producao"><a href="produtos.html"><span>Produções</span></a></li>
+                    <li class="items-nav" data-module="movimentacoes"><a href="movimentacoes.html"><span>Movimentações</span></a></li>
+                    
+                    <li class="items-nav"><a href="consulta.html"><span>Consulta</span></a></li>                         
+                    
+                    <li class="items-nav" data-module="relatorios"><a href="relatorios.html"><span>Relatórios</span></a></li>
+                    
+                    <li class="items-nav"><a href="suporte.html"><span>Suporte</span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="top-bar">
+        <div class="section-title">Produção</div>
+        <div class="search-container">
+            <input type="text" id="search-produto" placeholder="Buscar produção por número de pedido ou nota fiscal">
+        </div>
+        <div id="notification-bell-icon" class="notification-icon">
+            <i class="fas fa-bell"></i>
+            <div id="notification-dropdown" class="notification-dropdown">
+                <div class="notification-dropdown-header">
+                    Notificações <span id="notification-count">(0)</span>
+                </div>
+                <div id="notification-dropdown-list">
+                    <div class="notification-empty-state">
+                        Nenhuma notificação no momento.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="user-profile" id="user-profile-container">
+            <div class="avatar">
+                <img src="https://i.pravatar.cc/100" alt="Avatar do usuário" id="user-avatar">
+            </div>
+            <div class="user-info">
+                <div class="user-name" id="user-name">Carregando...</div>
+                <div class="user-email" id="user-email">Carregando...</div>
+            </div>
+            <i class="fas fa-chevron-down dropdown-arrow"></i>
+
+            <div class="dropdown-menu" id="user-dropdown-menu">
+                <a href="#" id="meus-dados-btn" class="dropdown-item">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Meus Dados</span>
+                </a>
+                <a href="#" id="logout-btn" class="dropdown-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <main class="conteudo-principal">
+        <div class="producao-container">
+            <div class="producao-header">
+                <h2>Cadastro de Produções</h2>
+                <div class="header-actions">
+                    <button id="btn-novo-produto" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Nova Produção
+                    </button>
+                    <button id="btn-exportar-producoes" class="btn btn-secondary">
+                        <i class="fas fa-file-export"></i> Exportar
+                    </button>
+                    <div class="filter-container">
+                        <select id="filter-conferente" class="filter-select">
+                            <option value="">Todos os Conferentes</option>
+                            <option value="Wesley">Wesley</option>
+                            <option value="Fernando">Fernando</option>
+                            <option value="Adriano">Adriano</option>
+                            <option value="Rafael F.">Rafael F.</option>
+                        </select>
+                        <select id="filter-mes" class="filter-select">
+                            <option value="">Todos os Meses</option>
+                            <option value="01">Janeiro</option>
+                            <option value="02">Fevereiro</option>
+                            <option value="03">Março</option>
+                            <option value="04">Abril</option>
+                            <option value="05">Maio</option>
+                            <option value="06">Junho</option>
+                            <option value="07">Julho</option>
+                            <option value="08">Agosto</option>
+                            <option value="09">Setembro</option>
+                            <option value="10">Outubro</option>
+                            <option value="11">Novembro</option>
+                            <option value="12">Dezembro</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table id="tabela-produtos" class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Data Produção</th>
+                            <th>Cliente</th>
+                            <th>Nº Pedido</th>
+                            <th>Itens</th>
+                            <th>Peso Total (kg)</th>
+                            <th>Sucata Total (kg)</th>
+                            <th>Conferentes</th>
+                            <th>Volumes Totais</th>
+                            <th>Nº Nota Fiscal</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </div>
+
+            <div class="pagination">
+                <button id="prev-page" class="btn-page"><i class="fas fa-chevron-left"></i></button>
+                <div id="page-numbers" class="page-numbers">
+                    <span id="current-page">1</span> de <span id="total-pages">1</span>
+                </div>
+                <button id="next-page" class="btn-page"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <div class="producao-summary">
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <i class="fas fa-weight-hanging"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h3>Peso Total Produzido</h3>
+                        <p id="peso-total">0 kg</p>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <i class="fas fa-trash-alt"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h3>Sucata Total Gerada</h3>
+                        <p id="sucata-total">0 kg</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-produto" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Nova Produção</h2>
+                    <button class="close-modal"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-produto">
+                        <input type="hidden" id="producao-id">
+                        
+                        <div class="producao-info-section">
+                            <h3>Informações da Produção</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nota-fiscal">Nº da Nota Fiscal</label>
+                                    <input type="text" id="nota-fiscal" placeholder="Digite o número da NF">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nome-cliente">Nome do Cliente</label>
+                                    <input type="text" id="nome-cliente" placeholder="Digite o nome do cliente" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="num-pedido">Nº do Pedido Vinculado</label>
+                                    <input type="text" id="num-pedido" placeholder="Digite o número do pedido" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="data-producao">Data de Produção</label>
+                                    <input type="date" id="data-producao" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="conferente-producao">Conferente da Produção</label>
+                                    <select id="conferente-producao" required>
+                                        <option value="">Selecione</option>
+                                        <option value="Wesley">Wesley</option>
+                                        <option value="Fernando">Fernando</option>
+                                        <option value="Adriano">Adriano</option>
+                                        <option value="Rafael F.">Rafael F.</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="items-section">
+                            <div class="items-header">
+                                <h3>Itens da Produção</h3>
+                                <button type="button" id="btn-add-item" class="btn btn-secondary">
+                                    <i class="fas fa-plus"></i> Adicionar Item
+                                </button>
+                            </div>
+                            
+                            <div id="items-container">
+                                </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary cancel-modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-detalhes" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="detalhe-cliente">Nome do Cliente</h2>
+                    <button class="close-modal"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="detalhes-header">
+                        <div class="nota-badge" id="detalhe-nf"></div>
+                        <div class="pedido-badge" id="detalhe-pedido"></div>
+                        <div class="data-badge" id="detalhe-data-principal"></div>
+                    </div>
+                    
+                    <div class="items-list">
+                        <h3>Itens da Produção <span id="item-count"></span></h3>
+                        <div id="items-details-container">
+                            </div>
+                    </div>
+                    
+                    <div class="producao-summary detalhes-summary">
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <i class="fas fa-weight-hanging"></i>
+                            </div>
+                            <div class="summary-info">
+                                <h3>Peso Total</h3>
+                                <p id="detalhe-peso-total">0 kg</p>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </div>
+                            <div class="summary-info">
+                                <h3>Sucata Total</h3>
+                                <p id="detalhe-sucata-total">0 kg</p>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div class="summary-info">
+                                <h3>Volumes Totais</h3>
+                                <p id="detalhe-volumes-total">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detalhes-acoes">
+                        <button type="button" id="btn-editar-producao" class="btn btn-secondary">
+                            <i class="fas fa-edit"></i> Editar Produção
+                        </button>
+                        <button type="button" id="btn-excluir-producao" class="btn btn-danger">
+                            <i class="fas fa-trash-alt"></i> Excluir Produção
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-confirma-exclusao" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Confirmar Exclusão</h2>
+                    <button class="close-modal"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <p id="mensagem-exclusao">Tem certeza que deseja excluir a produção da nota fiscal <span id="nf-exclusao"></span>?</p>
+                    <p class="warning-text">Esta ação não pode ser desfeita e o peso (produto + sucata) será devolvido às bobinas originais.</p>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary cancel-modal">Cancelar</button>
+                        <button type="button" id="btn-confirma-exclusao" class="btn btn-danger">Excluir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <template id="item-template">
+        <div class="item-container">
+            <div class="item-header">
+                <h4 class="item-title">Item <span class="item-number">1</span></h4>
+                <button type="button" class="btn-remove-item btn-icon">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="tipo-material-{index}">Tipo de Material</label>
+                    <select id="tipo-material-{index}" class="tipo-material" required>
+                        <option value="">Selecione o material</option>
+                        <option value="Eixo">Eixo</option>
+                        <option value="Soleira">Soleira</option>
+                        <option value="Guia 50">Guia 50</option>
+                        <option value="Guia 60">Guia 60</option>
+                        <option value="Guia 70">Guia 70</option>
+                        <option value="Guia 100">Guia 100</option>
+                        <option value="Meia-Cana">Meia-Cana</option>
+                        <option value="Meia-Cana Transvision">Meia-Cana Transvision</option>
+                        <option value="Super-Cana">Super-Cana</option>
+                    </select>
+                    <span class="fator-info" id="fator-info-{index}"></span>
+                </div>
+                <div class="form-group">
+                    <label for="altura-porta-{index}">Altura da Porta (m)</label>
+                    <input type="number" id="altura-porta-{index}" class="altura-porta" min="0.01" step="any" placeholder="Ex: 1.5">
+                </div>
+                <div class="form-group">
+                    <label for="comp-value-{index}">Comprimento em (m)</label>
+                    <input type="number" id="comp-value-{index}" class="comp-value" min="0.01" step="any" placeholder="Ex: 5.465">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group calculated-field">
+                    <label for="qtd-laminas-{index}">Quantidade de Lâminas</label>
+                    <input type="number" id="qtd-laminas-{index}" class="qtd-laminas" placeholder="(Calculado)">
+                </div>
+                <div class="form-group">
+                    <label for="volumes-{index}">Volumes</label>
+                    <input type="number" id="volumes-{index}" class="volumes" min="1" required placeholder="Digite a quantidade de volumes">
+                </div>
+                <div class="form-group calculated-field">
+                    <label for="peso-total-{index}">Peso Total Calculado (kg)</label>
+                    <input type="text" id="peso-total-{index}" class="peso-total" readonly placeholder="(Automático)">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group calculated-field">
+                    <label for="sucata-esperada-{index}">Sucata Esperada (kg)</label>
+                    <input type="text" id="sucata-esperada-{index}" class="sucata-esperada" readonly placeholder="(Automático)">
+                </div>
+            </div>
+            
+            <div class="bobinas-section">
+                <div class="bobinas-header">
+                    <h4>Bobinas Utilizadas</h4>
+                    <button type="button" class="btn btn-secondary btn-add-bobina">
+                        <i class="fas fa-plus"></i> Adicionar Bobina
+                    </button>
+                </div>
+                
+                <div class="bobinas-container" id="bobinas-container-{index}">
+                </div>
+            </div>
+            
+            <div class="item-summary">
+                <div>
+                    <span>Peso Total das Bobinas:</span>
+                    <span id="peso-bobinas-total-{index}">0 kg</span>
+                </div>
+                <div>
+                    <span>Sucata Total Gerada:</span>
+                    <span id="sucata-bobinas-total-{index}">0 kg</span>
+                </div>
+                <div>
+                    <span>Peso Restante a Alocar:</span>
+                    <span id="peso-restante-alocar-{index}">0 kg</span>
+                </div>
+            </div>
+            
+            <input type="hidden" class="item-id" value="">
+            <button type="button" class="btn btn-secondary btn-add-item-bottom">
+                <i class="fas fa-plus"></i> Adicionar Próximo Item
+            </button>
+        </div>
+    </template>
+    
+    <template id="bobina-template">
+        <div class="bobina-container">
+            <div class="item-header">
+                <h4 class="item-title">Bobina <span class="bobina-number">1</span></h4>
+                <button type="button" class="btn-remove-bobina btn-icon">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="lote-bobina-{itemIndex}-{bobinaIndex}">Lote da Bobina</label>
+                    <select id="lote-bobina-{itemIndex}-{bobinaIndex}" class="lote-bobina" required>
+                        <option value="">Selecione uma bobina</option>
+                        </select>
+                </div>
+                <div class="form-group">
+                    <label for="peso-usado-{itemIndex}-{bobinaIndex}">Peso Usado (kg)</label>
+                    <input type="number" id="peso-usado-{itemIndex}-{bobinaIndex}" class="peso-usado" step="0.01" min="0" required placeholder="(Gerado Automaticamente)">
+                </div>
+                <div class="form-group">
+                    <label for="sucata-gerada-{itemIndex}-{bobinaIndex}">Sucata Gerada (kg)</label>
+                    <input type="number" id="sucata-gerada-{itemIndex}-{bobinaIndex}" class="sucata-gerada" step="0.01" min="0" value="0">
+                </div>
+            </div>
+            
+            <div class="bobina-info">
+                <span>Peso Disponível: <span class="weight-label" id="peso-disponivel-{itemIndex}-{bobinaIndex}">0 kg</span></span>
+                <span>Peso Total: <span class="weight-label" id="peso-total-usado-{itemIndex}-{bobinaIndex}">0 kg</span></span>
+                <span>Peso Restante: <span class="weight-label" id="peso-restante-{itemIndex}-{bobinaIndex}">0 kg</span></span>
+            </div>
+            
+            <input type="hidden" class="bobina-id" value="">
+            <input type="hidden" class="bobina-original-id" value="">
+            <input type="hidden" class="peso-original" value="">
+            <input type="hidden" class="sucata-original" value="">
+        </div>
+    </template>
+    
+    <template id="item-detail-template">
+        <div class="item-detail-container">
+            <div class="item-detail-header">
+                <h4>Item <span class="item-detail-number">1</span> - <span class="item-detail-tipo">Super-Cana</span></h4>
+            </div>
+            <div class="item-detail-content">
+                <div class="detail-row">
+                    <div class="detail-item">
+                        <span class="detail-label">Quantidade de Lâminas:</span>
+                        <span class="detail-value qtd-laminas-value">30</span>
+                    </div>
+                        <span class="detail-label">Comprimento (m):</span>
+                        <span class="detail-value comp-value">6</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Peso Total:</span>
+                        <span class="detail-value peso-value">125.50 kg</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Sucata:</span>
+                        <span class="detail-value sucata-value">5.25 kg</span>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-item">
+                        <span class="detail-label">Volumes:</span>
+                        <span class="detail-value volumes-value">10</span>
+                    </div>
+                </div>
+                
+                <div class="bobinas-used-detail">
+                    <h5>Bobinas Utilizadas</h5>
+                    <div class="bobinas-detail-list">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    <template id="bobina-detail-template">
+        <div class="bobina-detail-item">
+            <strong>Lote:</strong> <span class="bobina-lote"></span> |
+            <strong>Peso Usado:</strong> <span class="bobina-peso-usado"></span> kg |
+            <strong>Sucata:</strong> <span class="bobina-sucata"></span> kg
+        </div>
+    </template>
+
+    <div id="notification-container"></div>
+
+    <script>
+    window.watsonAssistantChatOptions = {
+        integrationID: "50047cc6-c44e-48fb-b3a5-090b708c41dc", // The ID of this integration.
+        region: "us-south", // The region your integration is hosted in.
+        serviceInstanceID: "b23df53b-540f-453d-a17d-70148571d28f", // The ID of your service instance.
+        onLoad: async (instance) => { await instance.render(); }
+    };
+    setTimeout(function(){
+        const t=document.createElement('script');
+        t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+        document.head.appendChild(t);
+    });
+    </script>
+
+    <script src="../js/app.js" defer></script>
+    <script src="../js/notifications.js" defer></script>
+    <script src="../js/sidebar.js" defer></script>
+    <script src="../js/produtos.js" defer></script>
+</body>
+</html>

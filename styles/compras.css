@@ -1,0 +1,243 @@
+/* styles/compras.css */
+
+.page-header-compras {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+.filters-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-chip {
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-chip:hover {
+    border-color: #3498db;
+    color: #3498db;
+}
+
+.filter-chip.active {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+/* Grid de Cards */
+.requests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.request-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-left: 5px solid #cbd5e1; /* Cor padrão */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+    position: relative;
+}
+
+.request-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Cores de Borda por Prioridade */
+.request-card.priority-Urgente { border-left-color: #f39c12; }
+.request-card.priority-Crítica { border-left-color: #e74c3c; }
+.request-card.priority-Normal { border-left-color: #3498db; }
+
+.req-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.req-setor {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #94a3b8;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.req-date {
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+.req-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 5px;
+}
+
+.req-desc {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    flex-grow: 1; /* Empurra o footer pra baixo */
+}
+
+.req-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    color: #334155;
+    background: #f8fafc;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.req-meta i { color: #94a3b8; margin-right: 5px; }
+
+.req-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 15px;
+    margin-top: auto;
+}
+
+.req-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #64748b;
+}
+.user-avatar-mini {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 10px; font-weight: bold;
+}
+
+/* Botões de Ação no Card (Só Admin vê) */
+.req-actions button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px;
+    transition: transform 0.2s;
+}
+.req-actions button:hover { transform: scale(1.2); }
+.btn-approve { color: #27ae60; }
+.btn-reject { color: #e74c3c; }
+
+/* Badges de Status */
+.status-pill {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.status-pill.pendente { background: #fff7ed; color: #c2410c; }
+.status-pill.aprovado { background: #f0fdf4; color: #15803d; }
+.status-pill.recusado { background: #fef2f2; color: #b91c1c; }
+
+/* ========================================================================== */
+/* === BOTÕES DE FILTRO ESTILIZADOS (CHIPS) === */
+/* ========================================================================== */
+
+/* Estilo Base */
+.filter-chip {
+    border: 1px solid #e2e8f0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Hover Geral */
+.filter-chip:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* --- CORES ESPECÍFICAS POR TIPO --- */
+
+/* 1. TODOS (Azul Neutro/Padrão) */
+.filter-chip[data-filter="todos"].active {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+.filter-chip[data-filter="todos"]:hover {
+    color: #3498db;
+    border-color: #3498db;
+}
+
+/* 2. PENDENTES (Amarelo/Laranja Suave) */
+.filter-chip[data-filter="Pendente"].active {
+    background-color: #f59e0b;
+    color: white;
+    border-color: #f59e0b;
+}
+.filter-chip[data-filter="Pendente"]:hover {
+    color: #d97706;
+    border-color: #f59e0b;
+    background-color: #fffbeb;
+}
+
+/* 3. URGENTES (Vermelho/Fogo) */
+.filter-chip[data-filter="Urgente"].active {
+    background-color: #e74c3c;
+    color: white;
+    border-color: #e74c3c;
+}
+.filter-chip[data-filter="Urgente"]:hover {
+    color: #c0392b;
+    border-color: #e74c3c;
+    background-color: #fef2f2;
+}
+
+/* 4. APROVADOS (Verde Sucesso) */
+.filter-chip[data-filter="Aprovado"].active {
+    background-color: #2ecc71;
+    color: white;
+    border-color: #2ecc71;
+}
+.filter-chip[data-filter="Aprovado"]:hover {
+    color: #27ae60;
+    border-color: #2ecc71;
+    background-color: #f0fdf4;
+}

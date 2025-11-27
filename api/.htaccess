@@ -1,0 +1,27 @@
+# HostGator - Configurações do Apache
+RewriteEngine On
+
+# Permitir requisições OPTIONS para CORS
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+Header always set Access-Control-Allow-Headers "Content-Type, Authorization, Accept"
+
+# === REGRA ATUALIZADA ===
+# Enviar todas as requisições (que não são arquivos ou pastas reais)
+# para o index.php, que irá tratar a rota.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L,QSA]
+# === FIM DA REGRA ===
+
+# Configurações de segurança
+<Files "*.php">
+    Order allow,deny
+    Allow from all
+</Files>
+
+# Ocultar arquivos sensíveis
+<Files ".htaccess">
+    Order allow,deny
+    Deny from all
+</Files>

@@ -1,0 +1,169 @@
+/* styles/rastreio.css */
+
+#tracking-list-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    align-items: start;
+}
+
+/* Card de Rastreio */
+.tracking-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    
+    /* Habilita interação de arrastar */
+    cursor: grab; 
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tracking-card:active {
+    cursor: grabbing;
+}
+
+/* Classe adicionada via JS enquanto arrasta */
+.tracking-card.dragging {
+    opacity: 0.5;
+    border: 2px dashed #3498db;
+    box-shadow: none;
+}
+
+.tracking-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Header Simplificado */
+.tracking-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.header-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.header-actions-btn {
+    background: none;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+.header-actions-btn:hover {
+    background-color: #e2e8f0;
+    color: #3498db;
+}
+
+/* Corpo */
+.tracking-card-body {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-row {
+    font-size: 14px;
+    color: #475569;
+}
+.info-row strong {
+    color: #1e293b;
+}
+
+/* Visual do Navio */
+.container-fill-visual {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.container-fill-icon {
+    font-size: 28px;
+    color: #9ca3af;
+    margin-bottom: 8px;
+}
+
+.container-outline {
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #f1f5f9;
+    overflow: hidden;
+}
+
+.container-fill-bar {
+    height: 100%;
+    background-color: #3498db;
+    width: var(--fill-percentage, 0%);
+    transition: width 1s ease;
+}
+.container-fill-bar.completed { background-color: #2ecc71; }
+
+/* Timeline */
+.timeline {
+    list-style: none;
+    padding-left: 15px;
+    border-left: 2px solid #e2e8f0;
+    margin-left: 5px;
+}
+
+.timeline-item {
+    position: relative;
+    padding: 0 0 15px 20px;
+    color: #9ca3af;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -21px;
+    top: 2px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 2px solid #cbd5e1;
+}
+
+.timeline-item:last-child { padding-bottom: 0; }
+
+.timeline-item.completed { color: #334155; }
+.timeline-item.completed::before { background-color: #3498db; border-color: #3498db; }
+
+.timeline-item.active { color: #3498db; font-weight: 600; }
+.timeline-item.active::before { background-color: #fff; border-color: #3498db; width: 10px; height: 10px; left: -22px; }
+
+.timeline-item.active.final { color: #2ecc71; }
+.timeline-item.active.final::before { border-color: #2ecc71; }
+
+.eta-info { display: block; font-weight: 500; font-size: 11px; color: #64748b; margin-top: 2px; }
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    #tracking-list-container { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    #tracking-list-container { grid-template-columns: 1fr; }
+}
