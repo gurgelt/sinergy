@@ -58,14 +58,16 @@ const NotificationManager = {
         // === VERIFICAÇÃO DE SEGURANÇA ===
         // Não inicializa lógica pesada na tela de login
         const isLoginPage = window.location.pathname.includes('login.html') || window.location.pathname.includes('reset-password.html');
-        
+
         this.container = this.createOrGetContainer();
         this.isInitialized = true;
 
         // Se não for login, carrega tudo
-        this.setupBellIcon();
-        this.injectConfigModal();
-        this.checkSystemWarnings();
+        if (!isLoginPage) {
+            this.setupBellIcon();
+            this.injectConfigModal();
+            this.checkSystemWarnings();
+        }
         
         return true;
     },
