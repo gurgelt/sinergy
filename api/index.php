@@ -256,15 +256,15 @@ try {
             break;
 
         // === FINANCEIRO ===
-        case $path === '/contas-pagar' && $method === 'GET':
+        case $path === '/contasapagar' && $method === 'GET':
             handleGetContasPagar();
             break;
 
-        case $path === '/contas-pagar' && $method === 'POST':
+        case $path === '/contasapagar' && $method === 'POST':
             handleAddContaPagar($input_data);
             break;
 
-        case preg_match('/^\/contas-pagar\/(\d+)$/', $path, $matches):
+        case preg_match('/^\/contasapagar\/(\d+)$/', $path, $matches):
             $conta_id = (int)$matches[1];
             if ($method === 'PUT') {
                 handleUpdateContaPagar($conta_id, $input_data);
@@ -275,11 +275,11 @@ try {
             }
             break;
 
-        case $path === '/contas-receber' && $method === 'GET':
+        case $path === '/contasareceber' && $method === 'GET':
             handleGetContasReceber();
             break;
 
-        case preg_match('/^\/contas-receber\/(\d+)$/', $path, $matches):
+        case preg_match('/^\/contasareceber\/(\d+)$/', $path, $matches):
             $conta_id = (int)$matches[1];
             if ($method === 'PUT') {
                 handleUpdateContaReceber($conta_id, $input_data);
