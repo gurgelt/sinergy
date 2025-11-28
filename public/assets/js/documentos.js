@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ================= GLOBALS =================
+const API_BASE_URL = 'https://virtualcriacoes.com/sinergy/api';
 let produtosGlobaisSinergy = []; // Armazena produtos da Sinergy
 let clientesGlobaisSinergy = []; // Armazena clientes da Sinergy
 
@@ -105,7 +106,7 @@ async function carregarClientesSinergy() {
     const userID = window.getLoggedInUserID();
     const userRole = window.getLoggedInUserRole();
 
-    const res = await fetch(`/api/clientes?role=${userRole}&usuarioID=${userID}`);
+    const res = await fetch(`${API_BASE_URL}/clientes?role=${userRole}&usuarioID=${userID}`);
     if (!res.ok) throw new Error('Falha ao carregar clientes');
     
     clientesGlobaisSinergy = await res.json();
@@ -130,7 +131,7 @@ async function carregarClientesSinergy() {
  * Carrega Produtos da API /api/produtos
  */
 async function carregarProdutosSinergy() {
-    const res = await fetch("/api/produtos");
+    const res = await fetch(`${API_BASE_URL}/produtos`);
     if (!res.ok) throw new Error('Falha ao carregar produtos');
     
     const produtos = await res.json();
