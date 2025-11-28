@@ -7,7 +7,7 @@ Options -Indexes
 # Habilitar RewriteEngine
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /api/
+    RewriteBase /sinergy/api/
 
     # Redirecionar todas as requisições para index.php
     RewriteCond %{REQUEST_FILENAME} !-f
