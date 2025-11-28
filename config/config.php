@@ -33,7 +33,7 @@ define('SESSION_LIFETIME', $_ENV['SESSION_LIFETIME'] ?? 7200);
 define('CORS_ALLOWED_ORIGINS', $_ENV['CORS_ALLOWED_ORIGINS'] ?? '*');
 
 // API Settings
-define('API_BASE_PATH', $_ENV['API_BASE_PATH'] ?? '/api');
+define('API_BASE_PATH', $_ENV['API_BASE_PATH'] ?? '/sinergy/api');
 
 // Paths do Sistema
 define('ROOT_PATH', dirname(__DIR__));
