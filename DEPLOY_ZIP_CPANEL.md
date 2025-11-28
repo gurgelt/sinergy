@@ -197,7 +197,7 @@ API_BASE_PATH=/api
 ### **6.1 - Permissão da pasta logs/**
 
 1. No File Manager, em `public_html/sinergy/`
-2. Localize a pasta **logs**
+2. Localize a pasta **logs** (já vem do GitHub)
 3. Clique com **botão direito** na pasta `logs`
 4. Selecione **Change Permissions** (Alterar Permissões)
 5. Na janela que abrir:
@@ -211,6 +211,11 @@ API_BASE_PATH=/api
    Numeric value: 777
    ```
 6. Clique em **Change Permissions**
+
+**Nota:** A pasta `logs/` agora vem no download do GitHub. Se por algum motivo não aparecer, crie-a manualmente:
+- Clique em **+ Folder**
+- Nome: `logs`
+- Depois ajuste as permissões para 777
 
 ---
 
