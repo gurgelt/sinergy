@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initDiretoria();
 });
 
-const API_URL = 'https://virtualcriacoes.com/api';
+const API_URL = 'https://virtualcriacoes.com/sinergy/api';
 let charts = {}; 
 
 async function initDiretoria() {

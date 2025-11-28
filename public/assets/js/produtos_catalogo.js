@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeApp();
 });
 
-const API_URL = 'https://virtualcriacoes.com/api';
+const API_URL = 'https://virtualcriacoes.com/sinergy/api';
 let allProdutos = [];
 let filteredProdutos = [];
 let currentPage = 1;

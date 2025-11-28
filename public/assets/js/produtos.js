@@ -252,7 +252,7 @@ function addTableEventListeners() {
 async function loadDatabases() {
     try {
         // Carregar dados de produção
-        const producaoResponse = await fetch('https://virtualcriacoes.com/api/producoes');
+        const producaoResponse = await fetch('https://virtualcriacoes.com/sinergy/api/producoes');
         if (!producaoResponse.ok) throw new Error('Falha ao carregar produções.');
         producaoDatabase = await producaoResponse.json();
 
@@ -284,7 +284,7 @@ async function loadDatabases() {
         });
 
         // Carregar dados de bobinas
-        const bobinaResponse = await fetch('https://virtualcriacoes.com/api/bobinas');
+        const bobinaResponse = await fetch('https://virtualcriacoes.com/sinergy/api/bobinas');
         if (!bobinaResponse.ok) throw new Error('Falha ao carregar bobinas.');
         const bobinaData = await bobinaResponse.json();
         bobinaDatabase = bobinaData.map(bob => ({
@@ -342,7 +342,7 @@ async function logProducaoMovimentacao(tipo, producao) {
     };
 
     try {
-        const response = await fetch('https://virtualcriacoes.com/api/movimentacoes', {
+        const response = await fetch('https://virtualcriacoes.com/sinergy/api/movimentacoes', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newMov)
@@ -1382,7 +1382,7 @@ async function salvarProducao(event) {
         itens: itens
     };
 
-    let url = 'https://virtualcriacoes.com/api/producoes';
+    let url = 'https://virtualcriacoes.com/sinergy/api/producoes';
     let method = 'POST';
 
     if (producaoId) {
@@ -1443,7 +1443,7 @@ async function excluirProducao() {
     if (!deletingItemId) return;
 
     try {
-        const response = await fetch(`https://virtualcriacoes.com/api/producoes/${deletingItemId}`, {
+        const response = await fetch(`https://virtualcriacoes.com/sinergy/api/producoes/${deletingItemId}`, {
             method: 'DELETE'
         });
 

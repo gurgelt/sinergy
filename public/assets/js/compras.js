@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeAppCompras();
 });
 
-const API_URL = 'https://virtualcriacoes.com/api';
+const API_URL = 'https://virtualcriacoes.com/sinergy/api';
 let allSolicitacoes = [];
 let currentUserID = null;
 let currentUserRole = null;

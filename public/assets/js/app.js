@@ -66,7 +66,7 @@ async function checkAndApplyPermissions(userId, role) {
     }
 
     try {
-        const res = await fetch(`https://virtualcriacoes.com/api/permissoes/${userId}`);
+        const res = await fetch(`https://virtualcriacoes.com/sinergy/api/permissoes/${userId}`);
         if (res.ok) {
             const modulosPermitidos = await res.json();
             applyMenuPermissions(modulosPermitidos);
@@ -239,7 +239,7 @@ function setupLoaderHiding() {
 
 async function loadAndSetupUserProfile(username) {
     try {
-        const apiPath = 'https://virtualcriacoes.com/api'; 
+        const apiPath = 'https://virtualcriacoes.com/sinergy/api'; 
         const response = await fetch(`${apiPath}/users/${username}`);
         
         if (!response.ok) {

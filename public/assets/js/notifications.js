@@ -163,7 +163,7 @@ const NotificationManager = {
         const userId = localStorage.getItem('sinergy_user_id') || sessionStorage.getItem('sinergy_user_id');
 
         try {
-            const res = await fetch('https://virtualcriacoes.com/api/avisos-sistema', {
+            const res = await fetch('https://virtualcriacoes.com/sinergy/api/avisos-sistema', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -185,7 +185,7 @@ const NotificationManager = {
 
     async checkSystemWarnings() {
         try {
-            const res = await fetch('https://virtualcriacoes.com/api/avisos-sistema');
+            const res = await fetch('https://virtualcriacoes.com/sinergy/api/avisos-sistema');
             if (res.ok) {
                 this.systemWarnings = await res.json();
                 this.updateDropdown();
@@ -199,7 +199,7 @@ const NotificationManager = {
         if(!confirm("Deseja remover este aviso para todos os usuários?")) return;
         
         try {
-            await fetch(`https://virtualcriacoes.com/api/avisos-sistema/${id}`, { method: 'DELETE' });
+            await fetch(`https://virtualcriacoes.com/sinergy/api/avisos-sistema/${id}`, { method: 'DELETE' });
             this.checkSystemWarnings(); // Recarrega a lista
         } catch (e) { 
             console.error(e); 
@@ -394,7 +394,7 @@ const StockMonitor = {
     },
     async getStockDataFromAPI() {
         try {
-            const response = await fetch('https://virtualcriacoes.com/api/bobinas');
+            const response = await fetch('https://virtualcriacoes.com/sinergy/api/bobinas');
             if (!response.ok) throw new Error('Falha');
             const data = await response.json();
             return data.map(item => ({ ...item, Peso: parseFloat(item.Peso) }));
@@ -466,7 +466,7 @@ const PurchaseMonitor = {
     async check() {
         try {
             // Busca solicitações pendentes
-            const res = await fetch('https://virtualcriacoes.com/api/solicitacoes-compras?role=admin');
+            const res = await fetch('https://virtualcriacoes.com/sinergy/api/solicitacoes-compras?role=admin');
             if (!res.ok) return;
             
             const compras = await res.json();

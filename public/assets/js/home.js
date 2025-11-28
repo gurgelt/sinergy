@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadDashboardData();
 });
 
-const API_URL = 'https://virtualcriacoes.com/api';
+const API_URL = 'https://virtualcriacoes.com/sinergy/api';
 
 // === FATORES DE CÁLCULO ===
 const FATORES_MATERIAL_DASHBOARD = {

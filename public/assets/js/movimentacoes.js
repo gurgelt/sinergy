@@ -35,7 +35,7 @@ async function loadAllMovimentacoes() {
     if(loader) loader.style.display = 'flex';
     
     try {
-        const response = await fetch('https://virtualcriacoes.com/api/movimentacoes');
+        const response = await fetch('https://virtualcriacoes.com/sinergy/api/movimentacoes');
         if (!response.ok) {
             throw new Error('Falha ao carregar movimentações do servidor.');
         }

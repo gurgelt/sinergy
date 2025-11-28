@@ -61,7 +61,7 @@ function setupEventListeners() {
 
 async function loadSaldoData() {
     try {
-        const response = await fetch('https://virtualcriacoes.com/api/bobinas');
+        const response = await fetch('https://virtualcriacoes.com/sinergy/api/bobinas');
         if (!response.ok) {
             throw new Error('Falha ao carregar saldo de bobinas.');
         }

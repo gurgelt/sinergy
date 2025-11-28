@@ -19,7 +19,7 @@ async function loadUserProfile() {
 
     try {
         // O username é o identificador único para buscar no backend.
-        const response = await fetch(`https://virtualcriacoes.com/api/users/${rememberedUser}`);
+        const response = await fetch(`https://virtualcriacoes.com/sinergy/api/users/${rememberedUser}`);
         if (!response.ok) {
             console.error('Falha ao carregar perfil do usuário:', response.statusText);
             if (window.NotificationManager) NotificationManager.show({ title: 'Erro', message: 'Falha ao carregar seus dados. Tente novamente.', type: 'error' });
@@ -146,7 +146,7 @@ async function handleProfileUpdate(event) {
 
     try {
         // Envia o username como parte da URL para identificar o usuário a ser atualizado
-        const response = await fetch(`https://virtualcriacoes.com/api/users/${rememberedUser}`, {
+        const response = await fetch(`https://virtualcriacoes.com/sinergy/api/users/${rememberedUser}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updatePayload)
