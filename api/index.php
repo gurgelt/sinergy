@@ -32,6 +32,9 @@ if (strpos($request_uri, $base_api_path) === 0) {
 $path_parts = explode('?', $path, 2);
 $path = $path_parts[0];
 
+// Remove /index.php do path se existir
+$path = str_replace('/index.php', '', $path);
+
 // Normaliza path
 if (empty($path) || $path === '/') {
     $path = '/status';
