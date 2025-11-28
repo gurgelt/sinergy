@@ -2,9 +2,7 @@
 # Configurações para o Apache
 
 # FORÇA EXECUÇÃO DE PHP
-<FilesMatch "\.(php|php3|php4|php5|phtml)$">
-    SetHandler application/x-httpd-ea-php83
-</FilesMatch>
+AddType application/x-httpd-ea-php83 .php
 
 # Habilitar RewriteEngine
 <IfModule mod_rewrite.c>
