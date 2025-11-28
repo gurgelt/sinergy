@@ -1,0 +1,9 @@
+# Placeholder para manter a pasta logs/ no Git
+# Git não versiona pastas vazias, por isso este arquivo existe
+
+Este diretório é usado para armazenar logs da aplicação:
+- php_errors.log (erros do PHP)
+- application.log (logs do sistema)
+- debug.log (logs de debug)
+
+Certifique-se de que esta pasta tenha permissão de escrita (777) no servidor.

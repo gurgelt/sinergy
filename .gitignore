@@ -6,6 +6,7 @@ config/database.php
 
 # Logs e Debug
 logs/
+!logs/.gitkeep
 *.log
 error_log
 debug.log
