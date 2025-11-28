@@ -14,238 +14,212 @@ Sistema completo de gestão empresarial com módulos de:
 - 🔧 Manutenções
 - 📊 Relatórios e Dashboards
 
+---
+
+## 🚀 Deploy na Hostgator - Passo a Passo
+
+### **1. Baixar do GitHub**
+- Clique no botão verde **Code**
+- Selecione **Download ZIP**
+- Extraia o arquivo baixado
+
+### **2. Compactar a Pasta**
+- Localize a pasta `sinergy` extraída
+- Clique com botão direito → **Enviar para** → **Pasta compactada (zip)**
+- Você terá: `sinergy.zip`
+
+### **3. Upload no cPanel**
+- Acesse o cPanel da Hostgator
+- Abra **File Manager**
+- Navegue até `public_html/`
+- Clique em **Upload**
+- Envie o arquivo `sinergy.zip`
+- Aguarde o upload terminar
+
+### **4. Extrair no Servidor**
+- No File Manager, localize `sinergy.zip`
+- Clique com botão direito → **Extract**
+- Clique em **Extract Files**
+- Aguarde a extração
+- (Opcional) Delete o arquivo `sinergy.zip`
+
+### **5. Criar arquivo .env** ⚠️ **IMPORTANTE**
+- Entre na pasta `sinergy`
+- Clique em **+ File**
+- Nome: `.env` (com o ponto!)
+- Edite o arquivo e cole:
+
+```env
+# Configurações do Banco de Dados
+DB_HOST=localhost
+DB_NAME=seu_banco
+DB_USER=seu_usuario
+DB_PASSWORD=sua_senha
+
+# Configurações da Aplicação
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://seu-dominio.com
+
+# Configurações de Segurança
+SESSION_LIFETIME=7200
+CORS_ALLOWED_ORIGINS=*
+
+# API Settings
+API_BASE_PATH=/api
+```
+
+**⚠️ ATENÇÃO:** Substitua `DB_NAME`, `DB_USER` e `DB_PASSWORD` pelas credenciais reais do seu MySQL na Hostgator!
+
+- Clique em **Save Changes**
+
+### **6. Ajustar Permissões**
+- Localize a pasta `logs`
+- Clique com botão direito → **Change Permissions**
+- Digite `777`
+- Clique em **Change Permissions**
+
+### **7. Testar**
+Abra no navegador:
+```
+https://seu-dominio.com/sinergy/api/status
+```
+
+**Deve retornar:**
+```json
+{
+    "status": "success",
+    "message": "API funcionando corretamente"
+}
+```
+
+**Frontend:**
+```
+https://seu-dominio.com/sinergy/public/
+```
+
+---
+
 ## 🏗️ Estrutura do Projeto
 
 ```
 sinergy/
-├── .env.example              # Exemplo de variáveis de ambiente
-├── .gitignore               # Arquivos ignorados pelo Git
-├── README.md                # Documentação do projeto
+├── .env                    # Configurações (criar manualmente)
+├── .env.example           # Exemplo de configuração
+├── .gitignore             # Arquivos ignorados pelo Git
+├── .htaccess              # Configurações Apache
+├── README.md              # Este arquivo
 │
-├── api/                     # Ponto de entrada da API REST
-│   ├── index.php           # Router principal da API
-│   └── .htaccess           # Configurações Apache para API
+├── api/                   # API REST
+│   ├── index.php         # Router da API
+│   └── .htaccess         # Configurações da API
 │
-├── config/                  # Configurações do sistema
-│   ├── config.php          # Configurações gerais
-│   ├── database.php        # Conexão com banco de dados
-│   └── cors.php            # Configurações CORS
+├── config/                # Configurações do sistema
+│   ├── config.php        # Configurações gerais
+│   ├── database.php      # Conexão com banco
+│   └── cors.php          # Configurações CORS
 │
-├── src/                     # Código-fonte backend
-│   ├── autoload.php        # Autoloader de classes
-│   ├── legacy_functions.php # Funções legadas (handlers)
-│   │
-│   ├── Controllers/        # Controllers MVC
-│   │   └── BaseController.php
-│   │
-│   └── Utils/              # Classes utilitárias
-│       ├── Response.php    # Gerenciamento de respostas JSON
-│       ├── Security.php    # Funções de segurança
-│       ├── Validation.php  # Validações
-│       └── helpers.php     # Funções auxiliares
+├── src/                   # Código-fonte backend
+│   ├── autoload.php      # Autoloader
+│   ├── legacy_functions.php  # Handlers da API
+│   ├── Controllers/      # Controllers
+│   └── Utils/            # Utilitários
 │
-├── public/                  # Pasta pública (root do servidor web)
-│   ├── index.html          # Página principal
-│   │
-│   ├── assets/             # Assets estáticos
-│   │   ├── css/           # Arquivos CSS
-│   │   ├── js/            # Arquivos JavaScript
-│   │   └── images/        # Imagens
-│   │
-│   └── pages/              # Páginas HTML do sistema
+├── public/                # Arquivos públicos
+│   ├── index.html        # Página principal
+│   ├── .htaccess
+│   ├── assets/           # CSS, JS, Images
+│   └── pages/            # Páginas HTML
 │
-├── logs/                    # Logs do sistema (não versionado)
-└── backups/                 # Backups (não versionado)
+└── logs/                  # Logs do sistema (777)
 ```
 
-## 🚀 Configuração e Instalação
-
-### Pré-requisitos
-
-- PHP 7.4+ ou superior
-- MySQL 5.7+ ou MariaDB 10.3+
-- Servidor web (Apache/Nginx)
-- Extensões PHP: mysqli, json, mbstring
-
-### Instalação Local (Desenvolvimento)
-
-1. **Clone o repositório:**
-   ```bash
-   git clone https://github.com/seu-usuario/sinergy.git
-   cd sinergy
-   ```
-
-2. **Configure as variáveis de ambiente:**
-   ```bash
-   cp .env.example .env
-   ```
-   Edite o arquivo `.env` com suas configurações de banco de dados.
-
-3. **Configure o servidor web:**
-   - Aponte o document root para a pasta `public/`
-   - Certifique-se de que mod_rewrite está habilitado (Apache)
-
-4. **Importe o banco de dados:**
-   - Crie um banco de dados MySQL
-   - Importe o schema SQL (se disponível)
-
-5. **Ajuste permissões:**
-   ```bash
-   chmod 755 public/
-   chmod 755 api/
-   mkdir -p logs
-   chmod 777 logs/
-   ```
-
-### Instalação na Hostgator
-
-1. **Faça upload dos arquivos via FTP/cPanel:**
-   - Upload de todos os arquivos para `public_html/sinergy/`
-
-2. **Configure o .env:**
-   - Crie o arquivo `.env` na raiz com as credenciais do banco
-   - **IMPORTANTE**: Nunca versione o arquivo `.env` com credenciais reais
-
-3. **Configurações do Apache:**
-   - Os arquivos `.htaccess` já estão configurados
-   - Verifique se mod_rewrite está habilitado
-
-4. **Permissões:**
-   - Garanta que a pasta `logs/` tenha permissão de escrita (755 ou 777)
+---
 
 ## 🔒 Segurança
 
-### Boas Práticas Implementadas:
+### Arquivo .env
+- **NUNCA** versione o arquivo `.env` com credenciais reais
+- Use o `.env.example` como modelo
+- O `.env` está protegido no `.gitignore`
 
-1. **Credenciais protegidas:**
-   - Uso de variáveis de ambiente (.env)
-   - Arquivo .env não versionado
-   - config/database.php no .gitignore
+### Permissões Recomendadas
+- Pastas: `755`
+- Arquivos: `644`
+- Pasta `logs/`: `777` (necessita escrita)
 
-2. **Validação e sanitização:**
-   - Todas as entradas são validadas e sanitizadas
-   - Proteção contra SQL Injection via prepared statements
-   - Proteção contra XSS
+---
 
-3. **Autenticação:**
-   - Senhas com hash seguro (password_hash)
-   - Sistema de recuperação de senha com tokens
-   - Controle de permissões por módulo
-
-4. **API REST:**
-   - Cabeçalhos CORS configurados
-   - Validação de métodos HTTP
-   - Respostas JSON padronizadas
-
-## 📚 API Documentation
-
-### Base URL
-```
-https://seu-dominio.com/api
-```
-
-### Endpoints Principais
-
-#### Autenticação
-- `POST /login` - Fazer login
-- `POST /register` - Registrar usuário
-- `POST /recover-password` - Recuperar senha
-- `POST /reset-password` - Redefinir senha
-
-#### Usuários
-- `GET /users/{username}` - Obter perfil
-- `PUT /users/{username}` - Atualizar perfil
-
-#### Bobinas
-- `GET /bobinas` - Listar todas
-- `POST /bobinas` - Adicionar nova
-- `GET /bobinas/{id}` - Obter por ID
-- `PUT /bobinas/{id}` - Atualizar
-- `DELETE /bobinas/{id}` - Deletar
-
-#### Produções
-- `GET /producoes` - Listar todas
-- `POST /producoes` - Adicionar nova
-- `PUT /producoes/{id}` - Atualizar
-- `DELETE /producoes/{id}` - Deletar
-
-(Veja documentação completa da API para todos os endpoints)
-
-## 🛠️ Desenvolvimento
-
-### Tecnologias Utilizadas
+## ⚙️ Tecnologias
 
 **Backend:**
-- PHP (Procedural + OOP)
-- MySQL/MariaDB
+- PHP 7.4+
+- MySQL 5.7+
 - Apache
 
 **Frontend:**
 - HTML5
-- CSS3 (Custom CSS, sem frameworks)
-- JavaScript (Vanilla JS)
-- Chart.js (gráficos)
-- Font Awesome (ícones)
+- CSS3
+- JavaScript (Vanilla)
+- Chart.js
+- Font Awesome
 
-### Padrões de Código
+---
 
-- **Backend:** PSR-4 (autoloading), classes namespaced
-- **Frontend:** Modular, um arquivo JS por página
-- **CSS:** Um arquivo por módulo/página
-- **Nomenclatura:** camelCase (JS), snake_case (PHP), kebab-case (CSS)
+## 🆘 Problemas Comuns
 
-## 📝 Alterações na Reestruturação
+### Erro 500
+**Causa:** Permissões incorretas ou .env com erro
 
-### O que mudou:
+**Solução:**
+- Verifique permissão 777 na pasta `logs/`
+- Verifique se o `.env` foi criado
+- Verifique credenciais do banco
 
-1. ✅ **Estrutura de diretórios profissional** - Separação clara entre backend (src/) e frontend (public/)
-2. ✅ **Configuração centralizada** - Arquivo config.php único com suporte a .env
-3. ✅ **Segurança aprimorada** - Credenciais não ficam mais hardcoded
-4. ✅ **API modularizada** - Router limpo e organizado
-5. ✅ **Assets organizados** - CSS, JS e Images em public/assets/
-6. ✅ **Autoloading** - Classes PHP com namespace e autoload
-7. ✅ **Utilities classes** - Response, Security, Validation
-8. ✅ **.gitignore adequado** - Proteção de arquivos sensíveis
-9. ✅ **Documentação** - README completo
+### API retorna HTML ao invés de JSON
+**Causa:** mod_rewrite não funcionando
 
-### Compatibilidade:
+**Solução:**
+- Teste: `https://seu-dominio.com/sinergy/api/index.php`
+- Se funcionar, contate Hostgator para habilitar mod_rewrite
 
-- ✅ Todas as funcionalidades existentes mantidas
-- ✅ API endpoints inalterados
-- ✅ Frontend funciona sem alterações na lógica
-- ✅ Banco de dados não precisa de mudanças
+### Erro de conexão com banco
+**Causa:** Credenciais incorretas no `.env`
 
-## 🧪 Testing
+**Solução:**
+- No cPanel → **MySQL Databases**
+- Verifique nome do banco, usuário e senha
+- Atualize o `.env`
 
-Para testar localmente:
+---
 
-1. Inicie um servidor PHP local:
-   ```bash
-   cd public
-   php -S localhost:8000
-   ```
+## ✅ Checklist de Deploy
 
-2. Acesse no navegador:
-   ```
-   http://localhost:8000
-   ```
+- [ ] Baixou do GitHub
+- [ ] Compactou em ZIP
+- [ ] Fez upload no cPanel
+- [ ] Extraiu o ZIP
+- [ ] Criou arquivo `.env`
+- [ ] Configurou credenciais do banco no `.env`
+- [ ] Ajustou permissão 777 na pasta `logs/`
+- [ ] Testou `/api/status`
+- [ ] Frontend carrega corretamente
 
-## 🤝 Contribuindo
+---
 
-1. Crie uma branch para sua feature (`git checkout -b feature/MinhaFeature`)
-2. Commit suas mudanças (`git commit -m 'Adiciona MinhaFeature'`)
-3. Push para a branch (`git push origin feature/MinhaFeature`)
-4. Abra um Pull Request
+## 📞 Suporte
+
+Para problemas técnicos, verifique:
+1. Logs em: `logs/php_errors.log`
+2. Erros do Apache no cPanel → **Errors**
+
+---
 
 ## 📄 Licença
 
 Uso interno - ATRON
 
-## 👥 Autor
-
-Sistema desenvolvido para ATRON
-
 ---
 
-**Versão:** 2.0.0 (Reestruturada)
+**Versão:** 2.0
 **Última atualização:** Novembro 2025
