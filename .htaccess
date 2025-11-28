@@ -1,9 +1,6 @@
 # .htaccess Principal - Sistema Sinergy
 # Configurações para o Apache
 
-# FORÇA EXECUÇÃO DE PHP
-AddType application/x-httpd-ea-php83 .php
-
 # Habilitar RewriteEngine
 <IfModule mod_rewrite.c>
     RewriteEngine Off
