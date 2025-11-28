@@ -2,8 +2,7 @@
 # Controle de acesso e configurações
 
 # Handlers PHP (para Hostgator)
-AddHandler application/x-httpd-php74 .php
-AddType application/x-httpd-php .php .htm .html
+AddHandler application/x-httpd-ea-php83 .php
 
 # Desabilitar listagem de diretórios
 Options -Indexes
