@@ -47,7 +47,7 @@ async function salvarMovimentacao(tipoOperacao, dadosBobina, tipoMovimentacaoDes
     };
 
     try {
-        const response = await fetch('https://virtualcriacoes.com/api/movimentacoes', {
+        const response = await fetch('https://virtualcriacoes.com/sinergy/api/movimentacoes', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newMov)
@@ -171,7 +171,7 @@ function sortDataByDate(data) {
 async function loadData() {
     try {
         console.log("loadData() iniciado. Buscando bobinas da API...");
-        const response = await fetch('https://virtualcriacoes.com/api/bobinas');
+        const response = await fetch('https://virtualcriacoes.com/sinergy/api/bobinas');
         if (!response.ok) {
             throw new Error('Falha ao carregar bobinas do servidor.');
         }
@@ -626,7 +626,7 @@ async function handleFormSubmit(event) {
         saveButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Salvando...';
     }
 
-    let url = 'https://virtualcriacoes.com/api/bobinas';
+    let url = 'https://virtualcriacoes.com/sinergy/api/bobinas';
     let method = 'POST';
 
     if (id) {
@@ -685,13 +685,13 @@ async function confirmDelete() {
 
     try {
         // Fetch bobina data before deleting it to log the movement
-        const bobinaToDeleteResponse = await fetch(`https://virtualcriacoes.com/api/bobinas/${currentEditId}`);
+        const bobinaToDeleteResponse = await fetch(`https://virtualcriacoes.com/sinergy/api/bobinas/${currentEditId}`);
         if (!bobinaToDeleteResponse.ok) {
             throw new Error('Falha ao obter dados da bobina para log de exclusão.');
         }
         const bobinaData = await bobinaToDeleteResponse.json();
 
-        const response = await fetch(`https://virtualcriacoes.com/api/bobinas/${currentEditId}`, {
+        const response = await fetch(`https://virtualcriacoes.com/sinergy/api/bobinas/${currentEditId}`, {
             method: 'DELETE'
         });
 

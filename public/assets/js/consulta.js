@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     async function getEstoqueTotalPorTipo(tipoMaterial) {
         try {
-            const response = await fetch('https://virtualcriacoes.com/api/bobinas');
+            const response = await fetch('https://virtualcriacoes.com/sinergy/api/bobinas');
             if (!response.ok) throw new Error('Falha ao verificar estoque.');
             const bobinasEmEstoque = await response.json();
             

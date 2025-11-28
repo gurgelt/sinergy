@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeAppTesouraria();
 });
 
-const API_URL = 'https://virtualcriacoes.com/api';
+const API_URL = 'https://virtualcriacoes.com/sinergy/api';
 let transacoes = []; // Array unificado (Entradas + Saídas)
 let filteredTransacoes = [];
 

@@ -100,7 +100,7 @@ async function loadData() {
  */
 async function getBobinaDatabase() {
     try {
-        const response = await fetch('https://virtualcriacoes.com/api/bobinas');
+        const response = await fetch('https://virtualcriacoes.com/sinergy/api/bobinas');
         if (!response.ok) throw new Error('Falha ao carregar bobinas para relatórios.');
         const data = await response.json();
         return data.map(bobina => ({
@@ -119,7 +119,7 @@ async function getBobinaDatabase() {
  */
 async function getProdutoDatabase() {
     try {
-        const response = await fetch('https://virtualcriacoes.com/api/producoes');
+        const response = await fetch('https://virtualcriacoes.com/sinergy/api/producoes');
         if (!response.ok) throw new Error('Falha ao carregar produções para relatórios.');
         const data = await response.json();
         return data.map(producao => ({

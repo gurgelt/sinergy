@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // === CONSTANTES E VARIÁVEIS GLOBAIS ===
-const API_URL = 'https://virtualcriacoes.com/api';
+const API_URL = 'https://virtualcriacoes.com/sinergy/api';
 let allManutencoes = [];
 let allClientes = [];
 let allUsuarios = [];

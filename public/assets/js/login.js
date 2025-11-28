@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const REMEMBER_USER = 'sinergy_remember';
 // *** CORREÇÃO AQUI ***
-const API_BASE_URL = 'https://virtualcriacoes.com/api';
+const API_BASE_URL = 'https://virtualcriacoes.com/sinergy/api';
 
 /**
  * Inicialização do sistema de login
