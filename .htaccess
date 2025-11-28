@@ -3,21 +3,21 @@
 
 # Habilitar RewriteEngine
 <IfModule mod_rewrite.c>
-    RewriteEngine Off
-    # RewriteBase /sinergy/
+    RewriteEngine On
+    RewriteBase /sinergy/
 
     # Redirecionar /api/* para /api/index.php
-    # RewriteCond %{REQUEST_URI} ^/sinergy/api/
-    # RewriteCond %{REQUEST_FILENAME} !-f
-    # RewriteCond %{REQUEST_FILENAME} !-d
-    # RewriteRule ^api/(.*)$ api/index.php [QSA,L]
+    RewriteCond %{REQUEST_URI} ^/sinergy/api/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^api/(.*)$ api/index.php [QSA,L]
 
     # Redirecionar tudo mais para /public/ (se não for arquivo/diretório existente)
-    # RewriteCond %{REQUEST_URI} !^/sinergy/public/
-    # RewriteCond %{REQUEST_URI} !^/sinergy/api/
-    # RewriteCond %{REQUEST_FILENAME} !-f
-    # RewriteCond %{REQUEST_FILENAME} !-d
-    # RewriteRule ^(.*)$ public/$1 [L]
+    RewriteCond %{REQUEST_URI} !^/sinergy/public/
+    RewriteCond %{REQUEST_URI} !^/sinergy/api/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
 
 # Desabilitar listagem de diretórios

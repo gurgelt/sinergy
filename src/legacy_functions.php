@@ -1,3 +1,10 @@
+<?php
+/**
+ * Funções Legadas da API
+ * Handlers para todas as rotas do sistema
+ */
+
+function handleStatus() {
     $conn = get_db_connection();
     if (!$conn) {
         sendJsonResponse(['status' => 'error', 'message' => 'Falha na conexão com o banco de dados'], 500);

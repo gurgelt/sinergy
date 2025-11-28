@@ -6,13 +6,13 @@ Options -Indexes
 
 # Habilitar RewriteEngine
 <IfModule mod_rewrite.c>
-    RewriteEngine Off
-    # RewriteBase /sinergy/api/
+    RewriteEngine On
+    RewriteBase /sinergy/api/
 
     # Redirecionar todas as requisições para index.php
-    # RewriteCond %{REQUEST_FILENAME} !-f
-    # RewriteCond %{REQUEST_FILENAME} !-d
-    # RewriteRule ^(.*)$ index.php [QSA,L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
 </IfModule>
 
 # Proteção de arquivos sensíveis
