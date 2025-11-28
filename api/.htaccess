@@ -1,6 +1,10 @@
 # API .htaccess
 # Controle de acesso e configurações
 
+# Handlers PHP (para Hostgator)
+AddHandler application/x-httpd-php74 .php
+AddType application/x-httpd-php .php .htm .html
+
 # Desabilitar listagem de diretórios
 Options -Indexes
 
