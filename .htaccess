@@ -1,6 +1,11 @@
 # .htaccess Principal - Sistema Sinergy
 # Configurações para o Apache
 
+# FORÇA EXECUÇÃO DE PHP
+<FilesMatch "\.(php|php3|php4|php5|phtml)$">
+    SetHandler application/x-httpd-ea-php83
+</FilesMatch>
+
 # Habilitar RewriteEngine
 <IfModule mod_rewrite.c>
     RewriteEngine On
